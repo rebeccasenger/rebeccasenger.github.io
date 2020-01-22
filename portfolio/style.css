@@ -1,8 +1,31 @@
-.header {
-  text-align: center;
-  background-color: palevioletred;
-  padding: 20px;
+.title {
+  text-align: right;
+  background-color: transparent;
+  padding: 80px 40px;
   color: darkred;
   margin: 20px 0;
-  font-family: '1942_report1942_report';
+}
+
+.image {
+  background-image: url("https://images.unsplash.com/photo-1547042591-aae98619aab5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1051&q=80");
+  background-size: 850px 500px;
+  width: 850px;
+  height: 500px;
+  float: left;
+  width: 65%;
+}
+
+.contact {
+  float: left;
+  width: 35%;
+}
+
+.content {
+  width: 100%;
+}
+
+h1,
+h2,
+h3 {
+  font-family: 'Special Elite', cursive;
 }
