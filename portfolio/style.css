@@ -8,7 +8,7 @@
 
 .image {
   background-image: url("https://images.unsplash.com/photo-1547042591-aae98619aab5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1051&q=80");
-  background-position: center;
+  background-position: left;
   background-size: cover;
   height: 600px;
 }
