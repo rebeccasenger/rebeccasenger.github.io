@@ -1,0 +1,160 @@
+@import url('https://fonts.googleapis.com/css?family=Josefin+Sans|Open+Sans&display=swap');
+.navigation {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  background-color: #D8A7B1;
+  margin: 0px;
+  align-items: center;
+}
+
+.navigation > a {
+  font-size: 18px;
+  font-family: 'Josefin Sans', sans-serif;
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  background-color: #D8A7B1;
+}
+
+.content_row {
+  display: flex;
+  flex-direction: column;
+  margin: 0px 20px;
+  padding: 40px;
+}
+
+.content_v1 {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: flex-start;
+}
+
+.content_v2 {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 20px;
+  margin: 0px 20px;
+}
+
+.content_v2 > div {
+  border-radius: 25px;
+  margin: 20px;
+}
+
+.content_v2 > div > img {
+  border-radius: 25px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.form {
+  flex-grow: 2;
+}
+
+.card_v1 {
+  font-family: 'Open Sans', sans-serif;
+  background-color: #D8A7B1;
+  padding: 20px;
+  margin: 10px;
+  width: 350px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 25px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.card_v2 {
+  font-family: 'Open Sans', sans-serif;
+  background-color: #D8A7B1;
+  padding: 20px;
+  margin: 10px;
+  width: 80%;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  border-radius: 25px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.card_v1 > img, .content_v2 > img, .card_v2 >img {
+  height: 400px;
+  width: 300px;
+  border-radius: 15px;
+}
+
+.card_v2 > div {
+  margin: 10px 20px;
+}
+
+body {
+  background-color: #FAE8E0;
+}
+
+form {
+  box-shadow: 0 4px 8px 0 #D8A7B1, 0 6px 20px 0 #D8A7B1;
+  padding: 20px;
+}
+
+h1, h2, h3 {
+  background-color: inherit;
+  font-family: 'Josefin Sans', sans-serif;
+}
+
+p, form {
+  font-family: 'Open Sans', sans-serif;
+}
+
+a {
+  background-color: inherit;
+  padding: 20px;
+  text-decoration: none;
+  color: black;
+}
+
+hr {
+  border-color: #EF7C8E;
+  border-style: solid;
+}
+
+a:hover {
+  color: #FAE8E0;
+}
+
+table {
+  border-collapse: collapse;
+  width: 600px;
+  font-family: 'Open Sans', sans-serif;
+}
+
+th, td {
+  background-color: inherit;
+  text-align: left;
+  padding: 8px;
+}
+
+tr {
+  border-bottom: 1px solid #EF7C8E;
+}
+
+input[type=submit] {
+  border-radius: 10px;
+  font-size: 18px;
+  font-family: 'Josefin Sans', sans-serif;
+  background-color: #D8A7B1;
+  border: none;
+  padding: 16px 32px;
+  text-decoration: none;
+  margin: 20px 10px;
+}
+
+input[type=submit]:hover {
+  color: #FAE8E0;
+}
