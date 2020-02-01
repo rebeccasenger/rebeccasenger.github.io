@@ -86,8 +86,8 @@
 }
 
 .small_img {
-  height: 400px;
-  width: 300px;
+  height: 400px !important;
+  width: 300px !important;
   border-radius: 15px;
 }
 
