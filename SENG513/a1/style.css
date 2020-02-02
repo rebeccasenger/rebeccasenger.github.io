@@ -86,7 +86,6 @@
 }
 
 .small_img {
-  display: flex;
   height: 400px;
   width: 300px;
   border-radius: 15px;
