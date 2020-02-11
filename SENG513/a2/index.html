@@ -8,29 +8,71 @@
   </head>
   <body>
     <div class="calc-container">
-      <input class="calc-screen" type="text" name="equation" value="">
-      <button type="button" class="btn btn-info">(</button>
-      <button type="button" class="btn btn-info">)</button>
-      <button type="button" class="btn btn-warning">CE</button>
-      <button type="button" class="btn btn-danger">C</button>
-      <button type="button" class="btn">7</button>
-      <button type="button" class="btn">8</button>
-      <button type="button" class="btn">9</button>
-      <button type="button" class="btn btn-info">/</button>
-      <button type="button" class="btn">4</button>
-      <button type="button" class="btn">5</button>
-      <button type="button" class="btn">6</button>
-      <button type="button" class="btn btn-info">x</button>
-      <button type="button" class="btn">1</button>
-      <button type="button" class="btn">2</button>
-      <button type="button" class="btn">3</button>
-      <button type="button" class="btn btn-info">-</button>
-      <button type="button" class="btn">0</button>
-      <button type="button" class="btn">.</button>
-      <button type="button" class="btn btn-primary">=</button>
-      <button type="button" class="btn btn-info">+</button>
-
-
+      <div class="calc-screen">
+        <span id="answer"></span>
+        <span id='screen'>0</span>
+      </div>
+      <button id="bracket-left" type="button" class="btn btn-info" onclick="addInput(this.id)">(</button>
+      <button id="bracket-right" type="button" class="btn btn-info" onclick="addInput(this.id)">)</button>
+      <button type="button" class="btn btn-warning" onclick="undoScreen()">CE</button>
+      <button type="button" class="btn btn-danger" onclick="clearScreen()">C</button>
+      <button id="seven" type="button" class="btn" onclick="addInput(this.id)">7</button>
+      <button id="eight" type="button" class="btn" onclick="addInput(this.id)">8</button>
+      <button id="nine" type="button" class="btn" onclick="addInput(this.id)">9</button>
+      <button id="divide" type="button" class="btn btn-info" onclick="addInput(this.id)">/</button>
+      <button id="four" type="button" class="btn" onclick="addInput(this.id)">4</button>
+      <button id="five" type="button" class="btn" onclick="addInput(this.id)">5</button>
+      <button id="six" type="button" class="btn" onclick="addInput(this.id)">6</button>
+      <button id="multiply" type="button" class="btn btn-info" onclick="addInput(this.id)">*</button>
+      <button id="one" type="button" class="btn" onclick="addInput(this.id)">1</button>
+      <button id="two" type="button" class="btn" onclick="addInput(this.id)">2</button>
+      <button id="three" type="button" class="btn" onclick="addInput(this.id)">3</button>
+      <button id="subtract" type="button" class="btn btn-info" onclick="addInput(this.id)">-</button>
+      <button id="zero" type="button" class="btn" onclick="addInput(this.id)">0</button>
+      <button id="decimal" type="button" class="btn" onclick="addInput(this.id)">.</button>
+      <button type="button" class="btn btn-primary" onclick="equals()">=</button>
+      <button id="plus" type="button" class="btn btn-info" onclick="addInput(this.id)">+</button>
     </div>
+
+    <script type="text/javascript">
+      function addInput(id) {
+        let value = document.getElementById(id).innerHTML;
+        let current = document.getElementById('screen').innerHTML;
+        if(current == "0"){
+          document.getElementById('screen').innerHTML = value;
+        } else {
+          document.getElementById('screen').innerHTML += value;
+        }
+      }
+
+      function equals(){
+        let equation = document.getElementById('screen').innerHTML;
+        try {
+          let result = eval(equation);
+          document.getElementById('answer').innerHTML = equation + "=" + result;
+          document.getElementById('screen').innerHTML = "0";
+        } catch (e) {
+          if (e instanceof SyntaxError) {
+            document.getElementById('answer').innerHTML = "ERR0R: " + e.message;
+            document.getElementById('screen').innerHTML = "0";
+          }
+        }
+      }
+
+      function clearScreen(){
+        document.getElementById('screen').innerHTML = "0";
+      }
+
+      function undoScreen(){
+        let equation = new String(document.getElementById('screen').innerHTML);
+        if(equation.length > 1){
+          let result = equation.slice(0, -1);
+          document.getElementById('screen').innerHTML = result;
+        } else {
+          document.getElementById('screen').innerHTML = "0";
+        }
+
+      }
+    </script>
   </body>
 </html>

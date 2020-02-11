@@ -5,9 +5,32 @@
   grid-gap: 10px;
   width: 600px;
 }
+@media (max-width: 768px) {
+  /* For mobile phones: */
+  .calc-container {width: 100%;}
+}
 
 .calc-screen {
   grid-column: 1 / span 4;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  padding: 5px 10px;
+  border: solid;
+  border-radius: 5px;
+  border-width: 1px;
+  border-color: grey;
+}
+
+.answer {
+  display: flex;
+  grid-column: 1 / span 4;
+  justify-content: flex-end;
+}
+
+#answer {
+  color: grey;
 }
 
 body {
