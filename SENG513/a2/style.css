@@ -4,8 +4,10 @@
   padding: 10px;
   grid-gap: 10px;
   width: 600px;
+
 }
-@media (max-width: 768px) {
+
+@media screen and (max-width: 600px) {
   /* For mobile phones: */
   .calc-container {width: 100%;}
 }
