@@ -7,9 +7,11 @@ Browsers tested:
 	- Mozilla Firefox
   - Safari
 How to deploy Calculator:
-	1. Clone the repository rebeccasenger.github.io
-	2. Create a new repository on GitHub called username.github.io, where username is your GitHub username
-	3. Clone the newly created repository (username.github.io) onto your computer
-	4. Copy the two files index.html and style.css from rebeccasenger.github.io/SENG513/a2 into your own repository (username.github.io)
-	5. Push username.github.io to GitHub
-	6. View your calculator from your GitHub pages url https://username.github.io/, where username is your GitHub username
+	- the Calculator is deployed on my GitHub pages and is available from the url https://rebeccasenger.github.io/SENG513/a2.
+	- If you wish to deploy the Calculator in your own project then you must do the following steps:
+		1. Clone the repository rebeccasenger.github.io
+		2. Create a new repository on GitHub called username.github.io, where username is your GitHub username
+		3. Clone the newly created repository (username.github.io) onto your computer
+		4. Copy the two files index.html and style.css from rebeccasenger.github.io/SENG513/a2 into your own repository (username.github.io)
+		5. Push username.github.io to GitHub
+		6. View your calculator from your GitHub pages url https://username.github.io/, where username is your GitHub username
