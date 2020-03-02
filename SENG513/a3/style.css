@@ -1,0 +1,74 @@
+.rows {
+  display: flex;
+  flex-direction: column;
+  height: 98vh;
+  align-content: stretch;
+}
+
+.columns {
+  display: flex;
+  flex-direction: row;
+  width: 99vw;
+  height: 90vh;
+}
+
+.messages-box {
+  background-color: lightblue;
+  border-radius: 20px;
+  margin: 2px;
+  flex: 2;
+}
+
+#message-scroll-box {
+  display: flex;
+  overflow-y: auto;
+  height: 85%;
+}
+
+.users-box {
+  background-color: gainsboro;
+  border-radius: 20px;
+  margin: 2px;
+  flex: 1;
+}
+
+.input-box {
+  flex: 1;
+}
+
+body {
+  font: 13px Helvetica, Arial;
+  padding: 5px;
+}
+
+form input {
+  border: solid;
+  border-width: 2px;
+  padding: 10px;
+  margin-right: .5%;
+  width: 90vw;
+}
+
+#messages, #users {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+#messages {
+  margin-top: auto;
+}
+
+#messages li, #users li {
+  padding: 5px 10px;
+}
+
+#messages li:nth-child(odd) {
+  background: #eee;
+}
+
+.btn {
+  width: 8vw;
+  margin: 0px;
+}
