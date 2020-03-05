@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <title>Socket.IO chat</title>
+  </head>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+  <script>
+    $(function () {
+      var socket = io();
+      var cookie = document.cookie;
+      socket.emit('send cookie', cookie);
+      $('form').submit(function(e){
+        e.preventDefault(); // prevents page reloading
+        socket.emit('chat message', $('#m').val());
+        $('#m').val('');
+        return false;
+      });
+      socket.on('get messages', function(messages){
+        console.log(messages);
+        for(let i = 0; i < messages.length; i++){
+          let d = new Date(messages[i]['date']);
+          let formateddate = d.getHours() + ':';
+          if(d.getMinutes() < 10){
+            formateddate += '0' + d.getMinutes();
+          } else {
+            formateddate += d.getMinutes();
+          }
+
+          var cookieValue = document.cookie.replace(/(?:(?:^|.*;\s*)name\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+        	if(cookieValue == messages[i]['name']){
+            $('#messages').append($('<li>').text(formateddate + ' ').css("font-weight", "bold").append($('<span>').text(messages[i]['name']).css("color", messages[i]['color'])).append($('<span>').text(": " + messages[i]['message'])));
+        	}
+        	else {
+        	  $('#messages').append($('<li>').text(formateddate + ' ').append($('<span>').text(messages[i]['name']).css("color", messages[i]['color'])).append($('<span>').text(": " + messages[i]['message'])));
+        	}
+      	}
+      });
+      socket.on('chat message', function(msg, date, name, color){
+        let d = new Date(date);
+        let formateddate = d.getHours() + ':';
+        if(d.getMinutes() < 10){
+          formateddate += '0' + d.getMinutes();
+        } else {
+          formateddate += d.getMinutes();
+        }
+
+      	var cookieValue = document.cookie.replace(/(?:(?:^|.*;\s*)name\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+      	if(cookieValue == name){
+      	  $('#messages').append($('<li>').text(formateddate + ' ').css("font-weight", "bold").append($('<span>').text(name).css("color", color)).append($('<span>').text(": " + msg)));
+      	}
+      	else {
+      	  $('#messages').append($('<li>').text(formateddate + ' ').append($('<span>').text(name).css("color", color)).append($('<span>').text(": " + msg)));
+      	}
+        $("#message-scroll-box").scrollTop($('#message-scroll-box')[0].scrollHeight);
+      });
+      socket.on('user welcome', function(name, color){
+        document.cookie = 'name=' + name + '; max-age=86400;';
+        document.cookie = 'color=' + color + '; max-age=86400;';
+        let message = "You are " + name;
+        $('#chat-header').text(message);
+        $('#messages').append($('<li>').text(message).css("color", color));
+      });
+      socket.on('update users', function(users){
+        $('#users').empty();
+        for(let i = 0; i < users.length; i++){
+          $('#users').append($('<li>').text(users[i]));
+        }
+      });
+    });
+  </script>
+  <body>
+    <div class="rows">
+      <div class="columns">
+        <div class="messages-box">
+          <h2 id="chat-header"></h2>
+          <div id="message-scroll-box" class="messages">
+            <ul id="messages"></ul>
+          </div>
+        </div>
+        <div class="users-box">
+          <h2>Online Users</h2>
+          <ul id="users"></ul>
+        </div>
+      </div>
+      <div class="input-box">
+        <form action="">
+          <input id="m" autocomplete="off" /><button class="btn btn-primary">Submit</button>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
