@@ -21,7 +21,6 @@
         return false;
       });
       socket.on('get messages', function(messages){
-        console.log(messages);
         for(let i = 0; i < messages.length; i++){
           let d = new Date(messages[i]['date']);
           let formateddate = d.getHours() + ':';
@@ -39,6 +38,9 @@
         	  $('#messages').append($('<li>').text(formateddate + ' ').append($('<span>').text(messages[i]['name']).css("color", messages[i]['color'])).append($('<span>').text(": " + messages[i]['message'])));
         	}
       	}
+      });
+      socket.on('error message', function(errormsg){
+        $('#messages').append($('<li>').text(errormsg).css("color", "red"));
       });
       socket.on('chat message', function(msg, date, name, color){
         let d = new Date(date);
@@ -60,7 +62,6 @@
       });
       socket.on('user welcome', function(name, color){
         document.cookie = 'name=' + name + '; max-age=86400;';
-        document.cookie = 'color=' + color + '; max-age=86400;';
         let message = "You are " + name;
         $('#chat-header').text(message);
         $('#messages').append($('<li>').text(message).css("color", color));
