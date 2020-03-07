@@ -53,48 +53,57 @@ io.on('connection', function(socket){
   });
 
   socket.on('chat message', function(msg){
-    var command = msg.split(" ");
-    if(command[0] == '/nick'){
-      if (command.length != 2){
-        socket.emit('error message', 'Error: invalid number of arguments provided, use format /nick <new-nickname>');
-      } else {
-        if(users.includes(command[1])){
-          socket.emit('error message', 'Error: that username is already taken, please choose another name');
-        } else {
-          users.splice( users.indexOf(name), 1 );
-          name = command[1];
-          users.push(name);
-          socket.emit('user welcome', name, color);
-          io.emit('update users', users);
-        }
-      }
-    } else if(command[0] == '/nickcolor'){
-      if(command.length != 2 || command[1].length != 6){
-        socket.emit('error message', 'Error: invalid number of arguments provided, use format /nickcolor RRGGBB');
-      } else {
-        let checkchar = true;
-        for(let i = 0; i < command[1].length; i++){
-          checkchar = hexchars.includes(command[1][i]);
-          if(checkchar == false) {
-            break;
+    if(msg.length > 0){
+      if(msg[0] == '/'){
+        var command = msg.split(" ");
+        if(command[0] == '/nick'){
+          if (command.length != 2){
+            socket.emit('error message', 'Error: invalid number of arguments provided, use format /nick <new-nickname>');
+          } else {
+            if(users.includes(command[1])){
+              socket.emit('error message', 'Error: that username is already taken, please choose another name');
+            } else {
+              users.splice( users.indexOf(name), 1 );
+              name = command[1];
+              users.push(name);
+              socket.emit('user welcome', name, color);
+              io.emit('update users', users);
+            }
           }
-        }
-        if(checkchar == false) {
-          socket.emit('error message', 'Error: please enter a valid hexidecimal number');
+        } else if(command[0] == '/nickcolor'){
+          if(command.length != 2 || command[1].length != 6){
+            socket.emit('error message', 'Error: invalid number of arguments provided, use format /nickcolor RRGGBB');
+          } else {
+            let checkchar = true;
+            let hexnum = command[1].toUpperCase();
+            for(let i = 0; i < hexnum.length; i++){
+              checkchar = hexchars.includes(hexnum[i]);
+              if(checkchar == false) {
+                break;
+              }
+            }
+            if(checkchar == false) {
+              socket.emit('error message', 'Error: please enter a valid hexidecimal number');
+            } else {
+              color = '#' + hexnum;
+            }
+          }
         } else {
-          color = '#' + command[1];
+          socket.emit('error message', 'Error: invalid command');
         }
+      } else {
+        let date = new Date();
+        let messageinfo = {
+            date : date,
+            name : name,
+            message : msg,
+            color: color
+        }
+        messages.push(messageinfo);
+        io.emit('chat message', msg, date, name, color);
       }
     } else {
-      let date = new Date();
-      let messageinfo = {
-          date : date,
-          name : name,
-          message : msg,
-          color: color
-      }
-      messages.push(messageinfo);
-      io.emit('chat message', msg, date, name, color);
+      socket.emit('error message', 'Error: please enter a message');
     }
   });
 
