@@ -41,6 +41,7 @@
       });
       socket.on('error message', function(errormsg){
         $('#messages').append($('<li>').text(errormsg).css("color", "red"));
+        $("#message-scroll-box").scrollTop($('#message-scroll-box')[0].scrollHeight);
       });
       socket.on('chat message', function(msg, date, name, color){
         let d = new Date(date);
@@ -65,6 +66,7 @@
         let message = "You are " + name;
         $('#chat-header').text(message);
         $('#messages').append($('<li>').text(message).css("color", color));
+        $("#message-scroll-box").scrollTop($('#message-scroll-box')[0].scrollHeight);
       });
       socket.on('update users', function(users){
         $('#users').empty();
